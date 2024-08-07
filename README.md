@@ -1,4 +1,4 @@
-![Descripción alternativa](src/main/resources/static/tic-tac-toe.jpg)
+![Descripción alternativa](src/main/resources/static/tic-tac-toe-futbol.jpeg)
 
 # Documentación del Proyecto Tic-Tac-Toe
 

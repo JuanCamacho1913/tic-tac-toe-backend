@@ -7,9 +7,11 @@ import com.tic.tac.toe.domain.services.interfaces.IClubService;
 import com.tic.tac.toe.presentation.dtos.Clubs.ClubRequest;
 import com.tic.tac.toe.presentation.dtos.Clubs.ClubResponse;
 import com.tic.tac.toe.utils.mappers.ClubMapper;
+import com.tic.tac.toe.utils.mappers.util.FileUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -18,6 +20,7 @@ public class ClubServiceImpl implements IClubService {
 
     private final IClubRepository clubRepository;
     private final ClubMapper clubMapper;
+    private final FileUtil fileUtil;
 
     @Override
     public List<ClubResponse> findAll() {
@@ -35,8 +38,11 @@ public class ClubServiceImpl implements IClubService {
     }
 
     @Override
-    public ClubResponse createClub(ClubRequest clubRequest) {
+    public ClubResponse createClub(ClubRequest clubRequest) throws IOException {
+        String file = this.fileUtil.saveFile(clubRequest.image());
+
         ClubEntity club = this.clubMapper.getClubMappers(clubRequest);
+        club.setImages(file);
         ClubEntity clubCreate = this.clubRepository.save(club);
 
         return this.clubMapper.getClub(clubCreate);

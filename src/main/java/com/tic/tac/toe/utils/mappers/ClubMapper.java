@@ -35,7 +35,6 @@ public class ClubMapper {
         ClubEntity club = new ClubEntity();
         club.setName(clubRequest.name());
         club.setCountry(clubRequest.country());
-        club.setImages(clubRequest.images());
 
         return club;
     }
@@ -47,10 +46,6 @@ public class ClubMapper {
 
         if (StringUtils.isNotEmpty(clubRequest.country())){
             club.setCountry(clubRequest.country());
-        }
-
-        if (StringUtils.isNotEmpty(clubRequest.images())){
-            club.setImages(clubRequest.images());
         }
 
         return club;
